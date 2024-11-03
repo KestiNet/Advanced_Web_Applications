@@ -14,36 +14,26 @@ function fetchDogPictures(numImages = 1) {
             }
 
             data.message.forEach(imageUrl => {
-                const breed = extractBreeedName(imageUrl);
-                const formattedbreed = formatbreed(breed);
+                const breed = breeedName(imageUrl);
+                const breedFormat = breeder(breed);
 
-                fetchWikipediaContent(formattedbreed)
+                fetchWikiPedia(breedFormat)
                     .then(wikiContent => {
-                        createBreedElement(formattedbreed, imageUrl, wikiContent);
+                        template(breedFormat, imageUrl, wikiContent);
                     });
             });
         })
-        //.catch(error => {
-          //  console.error('Error fetching the dog pictures:', error);
-        //});
+      
 }
 
-function extractBreeedName(url) {
+function breeedName(url) {
     const parts = url.split('/');
     const breedPart = parts[parts.length - 2];
 
     return breedPart.includes('-') ? breedPart.split('-').reverse().join(' ') : breedPart.replace('-', ' ');
 }
 
-function formatbreed(breed) {
-    const specialCases = {
-        'frise bichon': 'Bichon Frise',
-        'terrier yorkshire': 'Yorkshire Terrier',
-    };
-
-    if (specialCases[breed.toLowerCase()]) {
-        return specialCases[breed.toLowerCase()];
-    }
+function breeder(breed) {
 
     return breed
         .split(' ')
@@ -51,28 +41,23 @@ function formatbreed(breed) {
         .join(' ');
 }
 
-function fetchWikipediaContent(breed) {
+function fetchWikiPedia(breed) {
     const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(breed)}`;
 
     return fetch(apiUrl)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Wikipedia page not found for ${breed}`);
-            }
+     
             return response.json();
         })
         .then(data => data.extract)
-        .catch(error => {
-            console.error('Error, wikipedia fetch failed:', error);
-            return 'breed info unavailable.';
-        });
+
 }
 
-function createBreedElement(breed, imageUrl, wikiContent) {
+function template(breed, imageUrl, wikiContent) {
     const container = document.querySelector('.container');
 
-    const wikiContentDiv = document.createElement('div');
-    wikiContentDiv.className = 'wiki-content';
+    const wikiDiv = document.createElement('div');
+    wikiDiv.className = 'wiki-content';
 
     const imgContainer = document.createElement('div');
     imgContainer.className = 'img-container';
@@ -98,10 +83,10 @@ function createBreedElement(breed, imageUrl, wikiContent) {
     wikiTextDiv.appendChild(header);
     wikiTextDiv.appendChild(description);
 
-    wikiContentDiv.appendChild(imgContainer);
-    wikiContentDiv.appendChild(wikiTextDiv);
+    wikiDiv.appendChild(imgContainer);
+    wikiDiv.appendChild(wikiTextDiv);
 
-    container.appendChild(wikiContentDiv);
+    container.appendChild(wikiDiv);
 
     console.log(`Displayed content for ${breed}`);
 }
