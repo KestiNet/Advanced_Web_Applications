@@ -1,7 +1,6 @@
 .container {
     width: 100%;
     padding: 0 15px; 
-    border: 2px solid black;
 }
 
 .wiki-content {
@@ -36,6 +35,10 @@
     .img-container {
         min-width: 50%;
         max-width: 50%;
+      
+    }
+    .wiki-header {
+        text-align: center;
     }
 
     .img-container {
