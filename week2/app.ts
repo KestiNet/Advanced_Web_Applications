@@ -66,3 +66,16 @@ let Boat: IBoat = {
 console.log(Car)
 console.log(Plane)
 console.log(Boat)
+
+
+class VehicleService<T> {
+    private items: T[] = [];
+
+    addItem(item: T): void {
+        this.items.push(item);
+      }
+    getItem(): T[]{
+        return this.items;
+    
+    }
+}
