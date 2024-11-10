@@ -4,11 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Local Scripts and Styles -->
+    <script src="wall.js"></script>
+    <link rel="stylesheet" type="text/css" href="wall.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-      
-    </header>
+   <div id="main-canvas">
+       <header>
+           <nav class="orange darken-2">
+               <div class="nav-wrapper">
+                   <a href="#" class="brand-logo left">Toilet Wall</a>
+                   <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i>class=<Material-icons>menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#">Sass</a></li>
+                        <li><a href="#">Components</a></li>
+                        <li><a href="#">JavaScript</a></li>
+                        <li><a href="#">Mobile</a></li>
+                    </ul>
+               </div>
+           </nav>
+           <ul class="sidenav" id="mobile-demo"></ul>
+            <li><a href="#">Sass</a></li>
+            <li><a href="#">Components</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">Mobile</a></li>
+       </header>
+
+       <main class="container section">
+            <ul id="the-wall" class="row">
+                <li class="col s6 m4 13 flow-text">lorem ipsum dolor sti amet alirkhg ldrfgikh</li>
+
+            </ul>
+            <div id = "poem controls">
+                <label for="poem-input">write your poem</label>
+                <textarea name =" poem-input" id="poem-input" cols="30"
+                rows="10"></textarea>
+                <label for = "vip">
+                    <input type="checkbox" name="vip" id="vip"><span>This is a very important poem</span>
+                </label>
+                <button id ="add-poem" class="btn pink">send your poem</button>
+                <button id ="add-poem-from-api" class="btn pink waves-effect">Get poems from API</button>
+
+            
+            </div>
+       </main>
+       <footer class="page-footer orange darken-2 section">Copyright Toilet wall inc.</footer>
+   </div>
 </body>
 </html>
