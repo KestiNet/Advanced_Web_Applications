@@ -12,7 +12,7 @@ type TVehicle = {
 let Vehicle = {
     model: "Boring generic vehicle",
     color: "Red",
-    year: "1993",
+    year: 1993,
     power: 60
 }
 
@@ -74,8 +74,17 @@ class VehicleService<T> {
     addItem(item: T): void {
         this.items.push(item);
       }
-    getItem(): T[]{
+    list(): T[] {
         return this.items;
+    }
     
     }
-}
+
+const cars = new VehicleService<ICar>();
+const boats = new VehicleService<IBoat>();
+
+cars.addItem(Car);
+boats.addItem(Boat)
+
+console.log(cars.list());
+console.log(boats.list());

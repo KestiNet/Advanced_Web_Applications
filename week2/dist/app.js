@@ -3,7 +3,7 @@ console.log("Hello World!");
 let Vehicle = {
     model: "Boring generic vehicle",
     color: "Red",
-    year: "1993",
+    year: 1993,
     power: 60
 };
 console.log(Vehicle);
@@ -32,3 +32,18 @@ let Boat = {
 console.log(Car);
 console.log(Plane);
 console.log(Boat);
+class VehicleService {
+    items = [];
+    addItem(item) {
+        this.items.push(item);
+    }
+    list() {
+        return this.items;
+    }
+}
+const cars = new VehicleService();
+const boats = new VehicleService();
+cars.addItem(Car);
+boats.addItem(Boat);
+console.log("Cars:", cars.list());
+console.log("Boats:", boats.list());
