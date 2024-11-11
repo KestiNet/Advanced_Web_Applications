@@ -1,3 +1,4 @@
+import { log } from "console";
 import { Request, Response, Router } from "express";
 import fs from "fs"
 
@@ -19,6 +20,28 @@ fs.readFile("data/poems.json", "utf-8",(err:NodeJS.ErrnoException | null, data: 
 )
 
 router.get("/", (req: Request, res: Response) => {
+    res.json(poems)
+})
+
+router.get("/:id", (req: Request, res: Response) => {
+    let id: number = parseInt(req.params.id)
+    try{
+        res.json(poems[id])
+    }catch (error:any){
+        console.error(`error parsin JSON: ${error}`)
+    }
+})
+
+router.post("/", (req: Request, res: Response) => {
+    let poem: string = req.body
+    poems.push(poem)
+
+    fs.writeFile("data/poems.json", JSON.stringify(poems), (err:NodeJS.ErrnoException | null)=>{
+        if(err){
+            console.error(err)
+            return
+        }
+    })
     res.json(poems)
 })
 

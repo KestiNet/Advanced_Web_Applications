@@ -22,4 +22,24 @@ fs_1.default.readFile("data/poems.json", "utf-8", (err, data) => {
 router.get("/", (req, res) => {
     res.json(poems);
 });
+router.get("/:id", (req, res) => {
+    let id = parseInt(req.params.id);
+    try {
+        res.json(poems[id]);
+    }
+    catch (error) {
+        console.error(`error parsin JSON: ${error}`);
+    }
+});
+router.post("/", (req, res) => {
+    let poem = req.body;
+    poems.push(poem);
+    fs_1.default.writeFile("data/poems.json", JSON.stringify(poems), (err) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    });
+    res.json(poems);
+});
 exports.default = router;
