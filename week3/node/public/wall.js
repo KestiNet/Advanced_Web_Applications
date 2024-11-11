@@ -12,12 +12,11 @@ function initialize() {
     }
 
     const elems = document.querySelectorAll(".sidenav");
-    if (M && M.Sidenav) {
-        M.Sidenav.init(elems, options);
-    }
+    const instances = M.Sidenav.init(elems, options)
 
     const addPoemButton = document.getElementById("add-poem");
-    addPoemButton.addEventListener("click", function () {
+
+    addPoemButton.addEventListener("click", function() {
         const poemInput = document.getElementById("poem-input");
         const vip = document.getElementById("vip");
 
@@ -25,12 +24,13 @@ function initialize() {
     });
 
     const addPoemButtonFromAPI = document.getElementById("add-poem-from-api");
-    addPoemButtonFromAPI.addEventListener("click", async function () {
+    
+    addPoemButtonFromAPI.addEventListener("click", async function() {
         try {
             const poemData = await fetch("http://localhost:8000");
-            const poemJson = await poemData.json();
+            const poemsJson = await poemData.json();
 
-            poemJson.forEach(poem => {
+            poemsJson.forEach(poem => {
                 addNewPoem(poem.poem, false);
             });
         } catch (error) {
