@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Gloria+Hallelujah&family=Indie+Flower&family=ZCOOL+KuaiLe&display=swap');
+
+body {
+    background-color: #f0f0f0;
+    font-size: 1.1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+footer {
+    border-top: 10px groove #666666;
+    padding: 0.5em;
+    text-align: right;
+    margin-top: 1em;
+}
+
+#main-canvas {
+    background-color: #f8f8f8;
+}
+
+ul#the-wall {
+    list-style-type: none;
+}
+
+ul#the-wall li {
+    padding: 1em;
+    background-color: #ffcc00;
+    box-shadow: 0px 0px 3px #bb8800;
+    border-radius: 2px;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1.2em;
+    color: #000000;
+    transform: rotate(0.5deg);
+}
